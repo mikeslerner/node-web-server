@@ -9,18 +9,24 @@ app.set('view engine', 'hbs');
 
 app.use(express.static(__dirname + '/public'));
 
+hbs.registerHelper('getCurrentYear', () => {
+  return new Date().getFullYear();
+});
+
+hbs.registerHelper('toUpper', (text) => {
+  return text.toUpperCase();
+});
+
 app.get('/', (req, res) => {
   res.render('home.hbs', {
     pageTitle: 'Home Page',
-    welcomeMessage: 'Welcome to the site',
-    currentYear: new Date().getFullYear()
+    welcomeMessage: 'Welcome to the site'
   });
 });
 
 app.get('/about', (req, res) => {
   res.render('about.hbs', {
-    pageTitle: 'About Page',
-    currentYear: new Date().getFullYear()
+    pageTitle: 'About Page'
   });
 });
 
